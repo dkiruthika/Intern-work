@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "LoginSuccess";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="btn-group mb-2" style="float: right">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox">
+        <label class="form-check-label" for="checkbox" style="margin-right: 20px;">
+            Show Active Entries
+        </label>
+    </div>
+    <button class="btn btn-secondary rounded" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-plus"></i> Add New Product</button>
+    <button class="btn btn-secondary rounded mx-2" data-toggle="modal" data-target="#exampleModalEdit">Edit</button>
+    <button class="btn btn-secondary rounded" disabled id="view">View</button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Product Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    &times;
+
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" />
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="toggleSwitch">Active</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch">
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="addNewProduct">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product Detail</h5>
+                <button type="button" class="close formReset" data-dismiss="modal" aria-label="Close">
+                    &times;
+
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <div class="form-group">
+                        <label for="productId">Product ID</label>
+                        <input type="text" class="form-control" id="productId" required />
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="oldProductName">Old Product Name</label>
+                                <input type="text" class="form-control" id="oldProductName" disabled />
+                            </div>
+                            <div class="col-6">
+                                <label for="newProductName">New Product Name</label>
+                                <input type="text" class="form-control" id="newProductName" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="oldProductName">Old Status</label>
+                                <input type="text" class="form-control" id="oldStatus" disabled />
+                            </div>
+                            <div class="col-6">
+                                <label for="newProductName">New Status</label>
+                                <input type="text" class="form-control" id="newStatus" required />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary formReset" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="editProduct">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="product" class="display">
+    <thead>
+        <th>Id</th>
+        <th>ProductName</th>
+        <th>Active</th>
+    </thead>
+</table>
+@section scripts{
+    
+    @Scripts.Render("~/bundles/scripts")
+
+
+
+}
+
+

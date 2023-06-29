@@ -1,0 +1,125 @@
+﻿@model ProductManagement.Models.UserData
+@using System.Web.Mvc
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--  <script src="~/Scripts/login.js"></script>-->
+    <script>
+        function validateUsername() {
+            var username = document.getElementById("Username").value;
+            var usernameError = document.getElementById("usernameError");
+            usernameError.textContent = "";
+
+            if (username.trim() === "") {
+                usernameError.textContent = "Username is required";
+                return false; // Return false to prevent form submission
+            }
+
+
+            var emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if (!emailPattern.test(username)) {
+                usernameError.textContent = "Invalid email format";
+                return false;
+            }
+
+            return true;
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("Password").value;
+            var passwordError = document.getElementById("passwordError");
+            passwordError.textContent = "";
+
+
+            if (password.trim() === "") {
+                passwordError.textContent = "Password is required ";
+                return false; // Return false to prevent form submission
+            }
+            if (password.length < 8) {
+                passwordError.textContent = "Password should be atleast of 8 characters";
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateForm() {
+            console.log("Button");
+            var isUsernameValid = validateUsername();
+            var isPasswordValid = validatePassword();
+
+            return isUsernameValid && isPasswordValid;
+        }
+
+    </script>
+
+    <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            text-align: center;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .company-info {
+            margin-right: 20px; /* Adjust the spacing between the image and the login form */
+        }
+
+        .login-form {
+            flex-grow: 1; /* Allow the login form to grow and take up remaining space */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="company-info">
+            <img src="~/Content/Images/img1.png" alt="Company Logo" style="width: 800px;" />
+            <h5>Powered by Toast•© Toast, Inc. 2023. All Rights Reserved.•Privacy Statement•Terms of Service•Toast Blog</h5>
+        </div>
+
+        <div class="login-form">
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "loginForm", id = "loginForm", onsubmit = "return validateForm()" }))
+            {
+                @Html.ValidationSummary(true)
+                <h2>Login</h2>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Username)
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username", oninput = "validateUsername()" })
+                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    <span class="error" id="usernameError"></span>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", oninput = "validatePassword()" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <span class="error" id="passwordError"></span>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <br />
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+

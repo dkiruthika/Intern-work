@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XTRACHEF_FreshersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="XTRACHEF_FreshersModelStoreContainer">
+    <EntitySet Name="ProductMasters" EntityType="XTRACHEF_FreshersModel.Store.ProductMasters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Purchases" EntityType="XTRACHEF_FreshersModel.Store.Purchases" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProductMasterPurchase" Association="XTRACHEF_FreshersModel.Store.ProductMasterPurchase">
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProductMasters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="varchar" Nullable="false" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="Purchases">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Purchasedate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductMasterId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductMasterPurchase">
+    <End Role="ProductMaster" Type="XTRACHEF_FreshersModel.Store.ProductMasters" Multiplicity="1" />
+    <End Role="Purchase" Type="XTRACHEF_FreshersModel.Store.Purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="ProductMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

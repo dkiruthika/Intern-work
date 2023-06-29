@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "WK0nnbus6WP/9KPEgEwZoKiulsMpTxwldC2XVpQt50aolz6/ZMg1D68ze8A28BgkYUzGCUwTuTdOd+gJsUW/+A==",
+  "success": false,
+  "projectFilePath": "D:\\.NET\\ProductManagement\\ProductManagement\\ProductManagement.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package ApiToken. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "ApiToken",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win",
+        ".NETFramework,Version=v4.7.2/win-x64",
+        ".NETFramework,Version=v4.7.2/win-x86"
+      ]
+    }
+  ]
+}

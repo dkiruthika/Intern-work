@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XTRACHEF_FreshersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ProductMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Purchases" Relationship="XTRACHEF_FreshersModel.ProductMasterPurchase" FromRole="ProductMaster" ToRole="Purchase" />
+  </EntityType>
+  <EntityContainer Name="XTRACHEF_FreshersEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
+    <EntitySet Name="Purchases" EntityType="XTRACHEF_FreshersModel.Purchase" />
+    <AssociationSet Name="ProductMasterPurchase" Association="XTRACHEF_FreshersModel.ProductMasterPurchase">
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Purchasedate" Type="String" Nullable="false" />
+    <Property Name="Quantity" Type="String" Nullable="false" />
+    <NavigationProperty Name="ProductMaster" Relationship="XTRACHEF_FreshersModel.ProductMasterPurchase" FromRole="Purchase" ToRole="ProductMaster" />
+    <Property Name="ProductMasterId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="ProductMasterPurchase">
+    <End Type="XTRACHEF_FreshersModel.ProductMaster" Role="ProductMaster" Multiplicity="1" />
+    <End Type="XTRACHEF_FreshersModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="ProductMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

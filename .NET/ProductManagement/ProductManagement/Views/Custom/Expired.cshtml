@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Expired";
+    Layout = null; // Optional: If you don't want to use a layout for this view
+}
+
+<script>
+    var currentUrl = window.location.href;
+    var currentController = currentUrl.split('/')[3];
+    var currentAction = currentUrl.split('/')[4];
+
+    var choice = confirm("Your session has expired. Click OK to extend your session or Cancel to go back.");
+
+    if (choice) {
+        // User clicked OK, perform the necessary action to extend the session
+        // For example, you can redirect to the current controller and action
+        window.location.href = '/' + currentController + '/' + currentAction;
+    } else {
+        // User clicked Cancel, handle accordingly (e.g., redirect to a different action)
+        window.location.href = "@Url.Action("Index", "Home")";
+    }
+</script>

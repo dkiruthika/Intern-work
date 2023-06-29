@@ -1,0 +1,35 @@
+﻿@model WepApplication1.Models.UserDetails
+
+@using System.Web.Mvc
+
+<div class="partial-view">
+    @using (Html.BeginForm("Welcome", "WebApp", FormMethod.Post, new { @class = "loginForm", id = "loginForm", onsubmit = "return validateForm()" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Phone Number" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.EmailAddress)
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", placeholder = "Email Address" })
+            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender)
+            <div>
+                @Html.RadioButtonFor(m => m.Gender, "Male", new { @class = "form-check-input" })
+                <label class="form-check-label">Male</label>
+            </div>
+            <div>
+                @Html.RadioButtonFor(m => m.Gender, "Female", new { @class = "form-check-input" })
+                <label class="form-check-label">Female</label>
+            </div>
+            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+
+        </div>
+    }
+</div>
+

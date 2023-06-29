@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Expired";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script>
+    
+    $(document).ready(function() {
+        var choice = confirm("Your session has expired. Click OK to extend your session or Cancel to logout.");
+
+        if (choice) {
+            // User clicked OK, perform the necessary action to extend the session
+            // For example, you can make an AJAX request to regenerate the token
+            $.ajax({
+                url: '@Url.Action("RegenerateToken", "Home")',
+                type: 'POST',
+                success: function(result) {
+                    // Redirect to the previous URL
+                    window.location.href = window.location.href;
+                    window.location.reload();
+                }
+            });
+        } else {
+            // User clicked Cancel, logout
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+    });
+
+    // Handle AJAX response for token expiration
+   
+</script>

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\LoginPage",
+    "\\LoginPage\\Models",
+    "\\LoginPage\\Views",
+    "\\LoginPage\\Views\\Login"
+  ],
+  "SelectedNode": "\\LoginPage\\Views\\Login\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}

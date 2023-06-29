@@ -1,0 +1,173 @@
+﻿@model WebApplication1.Models.UserData
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        /* Reset default browser styles */
+        body, h1, h2, h3, h4, h5, h6, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        #logout-button {
+            margin-left: 20px;
+        }
+
+        #header {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        #top-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+            #top-menu li {
+                margin-right: 10px;
+            }
+
+                #top-menu li a {
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 5px 5px;
+                }
+
+        #sidebar {
+            width: 200px;
+            background-color: #eee;
+            padding: 20px;
+        }
+
+        #right-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            #right-menu li {
+                margin-bottom: 5px;
+            }
+
+                #right-menu li a {
+                    display: block;
+                    color: #333;
+                    text-decoration: none;
+                    padding: 5px;
+                }
+
+        #content {
+            flex-grow: 1;
+            background-color: #fff;
+            padding: 20px;
+            margin-left: 20px;
+        }
+
+        #footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #logout-button {
+            margin-left: auto;
+        }
+
+        #color-button {
+            background-color: #ff4c00;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <!-- Top Menu -->
+        <ul id="top-menu">
+            <li>
+                <div style="background-color: #ff4c00; padding: 5px; display: flex; align-items: center;">
+                    <a href="#" style="display: flex; align-items: center;">
+                        <img src="~/Content/Images/toast-iphone-icon.png" width="30" height="30" style="margin-right: 5px;" />
+                        <span style="color: white; line-height: 30px; font-size: 20px ">toast</span>
+                    </a>
+                </div>
+            </li>
+
+
+            <li id="logout-button">
+                <div>
+            <li><img src="~/Content/Images/user.png" width="30" height="30" /></li>
+            <li style="color: #fff;">@Session["mail"]</li>
+            <li id="color-button"> @Html.ActionLink("Logout", "Logout", "WebApp")</li>
+    </div>
+    </li>
+    </ul>
+
+    </div>
+
+    <div class="container">
+        <div id="sidebar">
+            <!-- Left Side Menu -->
+            <ul id="right-menu">
+                <li style="margin-bottom: 10px;"><a href="#">Profile</a></li>
+                @if ((string)Session["roles"] == "admin")
+                {
+                    <li style="margin-bottom: 10px;">@Html.ActionLink("Settings", "Settings", "WebApp", new { area = "Business" })</li>
+                }
+                <li style="margin-bottom: 10px;"><a href="#">Dashboard</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Feedback</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Digital Menu</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Inventory</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Recipe</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Explore Features</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Self Ordering</a></li>
+                <li style="margin-bottom: 10px;"><a href="#">Order Direct</a></li>
+
+            </ul>
+
+        </div>
+
+        <div id="content">
+            <div id="placeholder">
+                @RenderBody()
+                @if ( (string)TempData["settings"]!="clicked")
+                {
+                    @Html.Partial("_WelcomePartial")
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div id="footer">
+            &copy; 2023 MyWebsite.com. All rights reserved.
+        </div>
+    </footer>
+    <div id="partial-view-placeholder">
+
+    </div>
+</body>
+</html>

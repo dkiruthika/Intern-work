@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product Page</h2>
+
+<!-- Your product page content -->
+
+<script>
+    $(document).ready(function() {
+        // AJAX request to check token expiration
+        $.ajax({
+            url: '@Url.Action("CheckTokenExpiration", "Product")',
+            type: 'POST',
+            success: function(result) {
+                if (result && result.expired) {
+                    // Token has expired, show alert and perform necessary action
+                    var choice = confirm("Your session has expired. Click OK to extend your session or Cancel to logout.");
+
+                    if (choice) {
+            // User clicked OK, perform the necessary action to extend the session
+            // For example, you can make an AJAX request to regenerate the token
+                    $.ajax({
+                         url: '@Url.Action("RegenerateToken", "Home")',
+                            type: 'POST',
+                          success: function(result) {
+                    // Redirect to the previous URL
+                            window.location.href = window.location.href;
+                            window.location.reload();
+                            }
+                     });
+                    } else {
+            // User clicked Cancel, logout
+                        window.location.href = '@Url.Action("Index", "Home")';
+                        }
+   
+                } else {
+                    // Token is valid, continue with the current action
+                    // ...
+                }
+            },
+            error: function() {
+                // Error occurred, handle accordingly
+                // ...
+            }
+        });
+    });
+</script>

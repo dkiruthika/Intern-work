@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ASPDemoApplication",
+    "\\ASPDemoApplication\\MVCDemo",
+    "\\ASPDemoApplication\\MVCDemo\\Controllers",
+    "\\ASPDemoApplication\\MVCDemo\\Models",
+    "\\ASPDemoApplication\\MVCDemo\\obj",
+    "\\ASPDemoApplication\\MVCDemo\\Properties",
+    "\\ASPDemoApplication\\MVCDemo\\Views",
+    "\\ASPDemoApplication\\MVCDemo\\Views\\Account",
+    "\\ASPDemoApplication\\MVCDemo\\Views\\Home"
+  ],
+  "SelectedNode": "\\ASPDemoApplication\\MVCDemo\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}
